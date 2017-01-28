@@ -1,5 +1,5 @@
 from flask import Flask, render_template, request
-import weather
+import yelp_places
 import os
 
 app = Flask(__name__)
@@ -8,7 +8,8 @@ app = Flask(__name__)
 def index():
     place = request.values.get('place')
     if place:
-        return render_template('index.html', place=place, weather=weather.get_weather(place))
+        search_term = request.values.get('term')
+        return render_template('index.html', place=place, term=search_term, restaurants=yelp_places.get_top_places(search_term, place, 3))
     else:
         return render_template('index.html')
 

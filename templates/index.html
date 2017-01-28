@@ -6,13 +6,35 @@
         <div class="jumbotron">
             <div class="container">
                 {% if place %}
-                    <h1>Weather Lookup</h1>
-                    <h2>The weather in {{ place }} is {{ weather }}.</h2>
+                    {% if term %}
+                        <h1>Top 3 Restaurants for {{ term }} in {{ place }}.</h1>
+                    {% else %}
+                        <h1>Top 3 Restaurants in {{ place }}.</h1>
+                    {% endif %}
+                    <table class='table table-striped'>
+                        <thead class='thead-inverse'> 
+                            <tr>
+                                <th>#</th>
+                                <th>Restaurant Name</th>
+                                <th>Yelp Rating</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                        {% for restaurant in restaurants %}
+                            <tr>
+                                <th scope="row">{{ restaurant['rank'] }}</th>
+                                <td> {{ restaurant['name'] }} </td>
+                                <td> {{ restaurant['rating'] }} </td>
+                            </tr>
+                        {% endfor %}
+                        </tbody>
+                    </table>
                 {% else %}
-                    <h1>Hello! Where do you want to look up the weather?</h1>
+                    <h1>Find the best restaurants in town.</h1>
                     <form action="/" class="form-inline">
                         <div class="form-group">
-                            <input type="text" name="place" placeholder="Enter the place here" class="form-control">
+                            <input type="text" name="term" placeholder="(Optional) Food type" class="form-control">
+                            <input type="text" name="place" placeholder="Location" class="form-control">
                         </div>
                         <input type="submit" value="Submit" class="btn btn-primary">
                     </form>
