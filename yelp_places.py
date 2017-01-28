@@ -57,7 +57,9 @@ def get_top_places(term, location, top):
                 "name" : business.name,
                 "rating" : business.rating,
                 "phone" : business.phone,
-                "rank" : n+1
+                "rank" : n+1,
+                "description" : business.snippet_text,
+                "review_count" : business.review_count
             }
         )
     return businesses

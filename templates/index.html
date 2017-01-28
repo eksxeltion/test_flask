@@ -17,6 +17,8 @@
                                 <th>#</th>
                                 <th>Restaurant Name</th>
                                 <th>Yelp Rating</th>
+                                <th># of Ratings</th>
+                                <th>People say about this place</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -25,6 +27,8 @@
                                 <th scope="row">{{ restaurant['rank'] }}</th>
                                 <td> {{ restaurant['name'] }} </td>
                                 <td> {{ restaurant['rating'] }} </td>
+                                <td> {{ restaurant['review_count'] }}</td>
+                                <td> {{ restaurant['description'] }}</td>
                             </tr>
                         {% endfor %}
                         </tbody>
